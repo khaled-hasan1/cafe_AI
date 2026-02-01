@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="{{ 'ar' if lang=='ar' else 'en' }}" dir="{{ 'rtl' if lang=='ar' else 'ltr' }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cafe AI - Login</title>
+  <style>
+    body{margin:0;font-family:Arial;background:linear-gradient(135deg,#1f3b8f,#6c3bd6);min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .card{width:380px;background:rgba(10,20,60,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:22px;color:#fff}
+    .title{font-size:26px;font-weight:800;text-align:center;margin:8px 0 18px}
+    input{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff;outline:none;margin-bottom:12px}
+    button{width:100%;padding:14px;border-radius:12px;border:0;background:linear-gradient(90deg,#58e1ff,#7a58ff);font-weight:800;cursor:pointer}
+    .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .lang a{color:#fff;text-decoration:none;font-weight:700;background:rgba(255,255,255,.12);padding:6px 10px;border-radius:10px}
+    .flash{background:rgba(255,0,0,.2);border:1px solid rgba(255,0,0,.35);padding:10px;border-radius:12px;margin-bottom:12px}
+    .hint{opacity:.9;font-size:13px;text-align:center;margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div class="lang">
+        {% if lang=='ar' %}
+          <a href="/login?lang=en">EN</a>
+        {% else %}
+          <a href="/login?lang=ar">AR</a>
+        {% endif %}
+      </div>
+      <div></div>
+    </div>
+
+    <div class="title">{{ 'تسجيل الدخول' if lang=='ar' else 'Login' }}</div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+      <input name="username" placeholder="Username" required />
+      <input name="password" type="password" placeholder="Password" required />
+      <button type="submit">{{ 'دخول' if lang=='ar' else 'Sign in' }}</button>
+    </form>
+
+    <div class="hint">
+      {{ 'للتجربة: cafe1 / 1234' if lang=='ar' else 'Demo: cafe1 / 1234' }}
+    </div>
+  </div>
+</body>
+</html>
